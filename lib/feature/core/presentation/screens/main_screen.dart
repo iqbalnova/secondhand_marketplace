@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:secondhand_marketplace/feature/account/presentation/screens/account_screen.dart';
 import 'package:secondhand_marketplace/utils/styles.dart';
 
 class MainScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
       case 3:
         return const OnDevScreen();
       case 4:
-        return const OnDevScreen();
+        return const AccountScreen();
 
       default:
         return const OnDevScreen();
