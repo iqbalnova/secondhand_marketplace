@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/button_widget.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/input_widget.dart';
-import 'package:secondhand_marketplace/routes/app_routes.dart';
 import 'package:secondhand_marketplace/utils/styles.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController fullNameController =
+      TextEditingController(text: '');
   final TextEditingController emailController = TextEditingController(text: '');
   final TextEditingController passwordController =
       TextEditingController(text: '');
@@ -32,11 +33,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 children: [
                   Text(
-                    'Masuk',
+                    'Daftar',
                     style: titleTextStyle,
                   ),
                   const SizedBox(
                     height: 24,
+                  ),
+                  CustomTextFormField(
+                    hintText: 'Nama Lengkap',
+                    label: 'Nama',
+                    controller: fullNameController,
+                  ),
+                  const SizedBox(
+                    height: 16,
                   ),
                   CustomTextFormField(
                     hintText: 'Contoh: johndee@gmail.com',
@@ -47,8 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 16,
                   ),
                   CustomTextFormField(
-                    hintText: 'Masukkan Password',
-                    label: 'Password',
+                    hintText: 'Buat Password',
+                    label: 'Buat Password',
                     isObsecure: isPasswordObsecure,
                     controller: passwordController,
                     onTap: () {
@@ -62,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   CustomButton(
                     onTap: () {},
-                    label: 'Masuk',
+                    label: 'Daftar',
                   ),
                 ],
               ),
@@ -71,15 +80,15 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Belum punya akun? ',
+                  'Sudah punya akun? ',
                   style: blackTextStyle.copyWith(fontWeight: FontWeight.w400),
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, AppRoutes.register);
+                    Navigator.pop(context);
                   },
                   child: Text(
-                    'Daftar di sini',
+                    'Masuk di sini',
                     style: blackTextStyle.copyWith(
                       fontWeight: FontWeight.w700,
                       color: primary,

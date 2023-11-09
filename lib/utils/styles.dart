@@ -12,6 +12,7 @@ FontWeight extraBold = FontWeight.w800;
 Color redColor = const Color(0XFFE75C62);
 Color blackColor = const Color(0xff3A4A5A);
 Color whiteColor = Colors.white;
+Color primary = const Color(0xff7126B5);
 
 TextStyle redTextStyle = GoogleFonts.poppins(
   color: redColor,
@@ -27,3 +28,6 @@ TextStyle whiteTextStyle = GoogleFonts.poppins(
   color: whiteColor,
   fontSize: 14.sp,
 );
+
+TextStyle titleTextStyle = GoogleFonts.poppins(
+    color: Colors.black, fontSize: 24.sp, fontWeight: FontWeight.w700);
