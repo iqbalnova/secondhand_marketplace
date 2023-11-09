@@ -12,7 +12,9 @@ FontWeight extraBold = FontWeight.w800;
 Color redColor = const Color(0XFFE75C62);
 Color blackColor = const Color(0xff3A4A5A);
 Color whiteColor = Colors.white;
-Color primary = const Color(0xff7126B5);
+Color primaryColor = const Color(0xff7126B5);
+
+Color greyColor = const Color(0XFF8A8A8A);
 
 TextStyle redTextStyle = GoogleFonts.poppins(
   color: redColor,

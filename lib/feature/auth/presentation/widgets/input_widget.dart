@@ -20,29 +20,32 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: blackTextStyle,
-        ),
-        Container(
-            margin: EdgeInsets.only(top: 4.h),
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color(0xffD0D0D0),
-                ),
-                borderRadius: BorderRadius.circular(16.r)),
-            child: Row(
-              children: [
-                // _buildPrefix(),
-                _buildTextFormField(),
-                onTap != null ? _buildObsecureCanceler() : const SizedBox(),
-              ],
-            )),
-      ],
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8.h),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: blackTextStyle,
+          ),
+          Container(
+              margin: EdgeInsets.only(top: 4.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color(0xffD0D0D0),
+                  ),
+                  borderRadius: BorderRadius.circular(16.r)),
+              child: Row(
+                children: [
+                  // _buildPrefix(),
+                  _buildTextFormField(),
+                  onTap != null ? _buildObsecureCanceler() : const SizedBox(),
+                ],
+              )),
+        ],
+      ),
     );
   }
 

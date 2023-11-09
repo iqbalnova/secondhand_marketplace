@@ -33,12 +33,12 @@ class _SplashScreenState extends State<SplashScreen> {
             Icon(
               Icons.storefront,
               size: 100.sp,
-              color: primary,
+              color: primaryColor,
             ),
             Text(
               'Secondhand Marketplace',
               style: TextStyle(
-                  fontSize: 18.sp, color: primary, fontWeight: FontWeight.w500),
+                  fontSize: 18.sp, color: primaryColor, fontWeight: FontWeight.w500),
               textAlign: TextAlign.center,
             )
           ],
