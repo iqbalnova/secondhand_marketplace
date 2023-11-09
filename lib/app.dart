@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      designSize: const Size(360, 640),
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: !kDebugMode,
