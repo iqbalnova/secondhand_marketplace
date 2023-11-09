@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/screens/login_screen.dart';
+import 'package:secondhand_marketplace/feature/auth/presentation/screens/register_screen.dart';
 import 'package:secondhand_marketplace/feature/core/presentation/screens/splash_screen.dart';
 import 'package:secondhand_marketplace/routes/app_routes.dart';
 
@@ -13,6 +14,8 @@ class AppRouter {
               return const SplashScreen();
             case AppRoutes.login:
               return const LoginScreen();
+            case AppRoutes.register:
+              return const RegisterScreen();
             default:
               return const Scaffold(
                 body: Center(

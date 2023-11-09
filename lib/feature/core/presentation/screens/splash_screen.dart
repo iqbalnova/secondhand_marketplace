@@ -26,11 +26,24 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Icon(
-        Icons.storefront,
-        size: 100.sp,
-        color: const Color(0XFF7126B5),
-      )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.storefront,
+              size: 100.sp,
+              color: primary,
+            ),
+            Text(
+              'Secondhand Marketplace',
+              style: TextStyle(
+                  fontSize: 18.sp, color: primary, fontWeight: FontWeight.w500),
+              textAlign: TextAlign.center,
+            )
+          ],
+        ),
+      ),
     );
   }
 }
