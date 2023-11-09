@@ -40,7 +40,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   child: Icon(
                     Icons.camera_alt_outlined,
                     size: 24.sp,
-                    color: primary,
+                    color: primaryColor,
                   ),
                 ),
               ),
@@ -107,7 +107,7 @@ class AccountMenu extends StatelessWidget {
             Icon(
               icon,
               size: 24,
-              color: primary,
+              color: primaryColor,
             ),
             Padding(
               padding: EdgeInsets.only(left: 16.w),
