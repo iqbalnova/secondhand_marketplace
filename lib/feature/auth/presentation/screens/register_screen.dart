@@ -24,6 +24,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(''),
+        // backgroundColor: Colors.transparent,
+        // elevation: 0,
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -128,7 +133,7 @@ class LoginButton extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, AppRoutes.login);
+              Navigator.pop(context);
             },
             child: Text(
               'Masuk di sini',
