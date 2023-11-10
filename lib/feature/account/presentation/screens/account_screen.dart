@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:secondhand_marketplace/routes/app_routes.dart';
 import 'package:secondhand_marketplace/utils/styles.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -10,6 +11,8 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  bool isOnboarding = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,28 +32,16 @@ class _AccountScreenState extends State<AccountScreen> {
               const SizedBox(
                 height: 24,
               ),
-              Align(
-                alignment: Alignment.center, // Tengahkan secara horizontal
-                child: Container(
-                  padding: const EdgeInsets.all(36),
-                  decoration: BoxDecoration(
-                    color: const Color(0xffE2D4F0),
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Icon(
-                    Icons.camera_alt_outlined,
-                    size: 24.sp,
-                    color: primaryColor,
-                  ),
-                ),
-              ),
+              _buildProfileImage(),
               const SizedBox(
                 height: 32,
               ),
               AccountMenu(
                 label: 'Ubah akun',
                 icon: Icons.create_rounded,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.editAccount);
+                },
               ),
               AccountMenu(
                 label: 'Pengaturan akun',
@@ -80,6 +71,33 @@ class _AccountScreenState extends State<AccountScreen> {
       ),
     );
   }
+
+  Widget _buildProfileImage() {
+    return Align(
+      alignment: Alignment.center, // Tengahkan secara horizontal
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          color: const Color(0xffE2D4F0),
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: isOnboarding
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(12.r),
+                child: Image.network(
+                  'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+                  fit: BoxFit.cover,
+                ),
+              )
+            : Icon(
+                Icons.camera_alt_outlined,
+                size: 24.sp,
+                color: primaryColor,
+              ),
+      ),
+    );
+  }
 }
 
 class AccountMenu extends StatelessWidget {
@@ -97,7 +115,7 @@ class AccountMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 18.h),
         decoration: const BoxDecoration(

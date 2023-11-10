@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:secondhand_marketplace/feature/account/presentation/screens/account_screen.dart';
+import 'package:secondhand_marketplace/feature/account/presentation/screens/edit_account_screen.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/screens/login_screen.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/screens/register_screen.dart';
 import 'package:secondhand_marketplace/feature/core/presentation/screens/main_screen.dart';
@@ -22,6 +23,8 @@ class AppRouter {
               return const MainScreen();
             case AppRoutes.account:
               return const AccountScreen();
+            case AppRoutes.editAccount:
+              return const EditAccountScreen();
             default:
               return const Scaffold(
                 body: Center(

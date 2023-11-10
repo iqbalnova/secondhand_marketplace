@@ -8,6 +8,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final bool isObsecure;
   final VoidCallback? onTap;
+  final int? maxLines;
 
   const CustomTextFormField({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.isObsecure = false,
     this.onTap,
     required this.label,
+    this.maxLines = 1,
   });
 
   @override
@@ -68,6 +70,7 @@ class CustomTextFormField extends StatelessWidget {
         style: blackTextStyle.copyWith(
           fontWeight: medium,
         ),
+        maxLines: maxLines,
         decoration: InputDecoration.collapsed(
           hintText: hintText,
           // hintStyle: whiteTextStyle.copyWith(
