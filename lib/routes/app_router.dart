@@ -5,6 +5,8 @@ import 'package:secondhand_marketplace/feature/auth/presentation/screens/login_s
 import 'package:secondhand_marketplace/feature/auth/presentation/screens/register_screen.dart';
 import 'package:secondhand_marketplace/feature/core/presentation/screens/main_screen.dart';
 import 'package:secondhand_marketplace/feature/core/presentation/screens/splash_screen.dart';
+import 'package:secondhand_marketplace/feature/seller/presentation/screens/sell_form_screen.dart';
+import 'package:secondhand_marketplace/feature/seller/presentation/screens/selling_list_screen.dart';
 import 'package:secondhand_marketplace/routes/app_routes.dart';
 
 class AppRouter {
@@ -25,6 +27,10 @@ class AppRouter {
               return const AccountScreen();
             case AppRoutes.editAccount:
               return const EditAccountScreen();
+            case AppRoutes.sellingList:
+              return const SellingList();
+            case AppRoutes.sellForm:
+              return const SellFormScreen();
             default:
               return const Scaffold(
                 body: Center(
