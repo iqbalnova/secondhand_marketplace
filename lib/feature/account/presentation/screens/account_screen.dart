@@ -87,7 +87,7 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               Center(
                 child: Text(
-                  _packageInfo.version,
+                  'Version ${_packageInfo.version}',
                   style: blackTextStyle.copyWith(
                       color: const Color(0xff8A8A8A),
                       fontSize: 12.sp,
