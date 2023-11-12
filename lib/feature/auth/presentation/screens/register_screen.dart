@@ -73,43 +73,45 @@ class RegisterForm extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(top: 24.h),
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Daftar',
-              style: titleTextStyle,
-            ),
-            FormWidget(
-              childern: [
-                CustomTextFormField(
-                  hintText: 'Nama Lengkap',
-                  label: 'Nama',
-                  controller: fullNameController,
-                ),
-                CustomTextFormField(
-                  hintText: 'Contoh: johndee@gmail.com',
-                  label: 'Email',
-                  controller: emailController,
-                ),
-                CustomTextFormField(
-                  hintText: 'Buat Password',
-                  label: 'Buat Password',
-                  isObsecure: isPasswordObsecure,
-                  controller: passwordController,
-                  onTap: onPasswordSuffixTap,
-                ),
-              ],
-            ),
-            CustomButton(
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, AppRoutes.main, (route) => false);
-              },
-              label: 'Daftar',
-            ),
-          ],
-        ),
+        child: ListView(children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Daftar',
+                style: titleTextStyle,
+              ),
+              FormWidget(
+                childern: [
+                  CustomTextFormField(
+                    hintText: 'Nama Lengkap',
+                    label: 'Nama',
+                    controller: fullNameController,
+                  ),
+                  CustomTextFormField(
+                    hintText: 'Contoh: johndee@gmail.com',
+                    label: 'Email',
+                    controller: emailController,
+                  ),
+                  CustomTextFormField(
+                    hintText: 'Buat Password',
+                    label: 'Buat Password',
+                    isObsecure: isPasswordObsecure,
+                    controller: passwordController,
+                    onTap: onPasswordSuffixTap,
+                  ),
+                ],
+              ),
+              CustomButton(
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, AppRoutes.main, (route) => false);
+                },
+                label: 'Daftar',
+              ),
+            ],
+          ),
+        ]),
       ),
     );
   }

@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:secondhand_marketplace/routes/app_routes.dart';
 import 'package:secondhand_marketplace/utils/styles.dart';
 
@@ -13,12 +15,39 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   bool isOnboarding = true;
 
+  late PackageInfo _packageInfo = PackageInfo(
+    version: '0.0.0',
+    buildNumber: 'N/A',
+    appName: 'N/A',
+    packageName: 'N/A',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPackageInfo();
+  }
+
+  Future<void> _loadPackageInfo() async {
+    try {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      setState(() {
+        _packageInfo = packageInfo;
+      });
+    } catch (e) {
+      // Handle the exception, e.g., print an error message.
+      if (kDebugMode) {
+        print('Error loading package info: $e');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
+      // appBar: AppBar(
+      //   title: const Text(''),
+      // ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -58,7 +87,7 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               Center(
                 child: Text(
-                  'Version 1.0.0',
+                  _packageInfo.version,
                   style: blackTextStyle.copyWith(
                       color: const Color(0xff8A8A8A),
                       fontSize: 12.sp,
