@@ -7,4 +7,6 @@ class AppRoutes {
   static const String editAccount = "/editAccount";
   static const String sellingList = "/sellingList";
   static const String sellForm = "/sellForm";
+  static const String previewScreen = "/previewScreen";
+  static const String imageFullScreen = "/imageFullScreen";
 }

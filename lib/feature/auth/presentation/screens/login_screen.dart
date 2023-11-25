@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:secondhand_marketplace/config/firebase_service.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/button_widget.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/form.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/input_widget.dart';
@@ -50,7 +51,10 @@ class LoginForm extends StatelessWidget {
   final TextEditingController passwordController;
   final bool isPasswordObsecure;
   final VoidCallback onPasswordSuffixTap;
-  const LoginForm(
+
+  final FirebaseService _firebaseService = FirebaseService();
+
+  LoginForm(
       {super.key,
       required this.emailController,
       required this.passwordController,
@@ -90,6 +94,12 @@ class LoginForm extends StatelessWidget {
             ),
             CustomButton(
               onTap: () {
+                // _firebaseService.signInWithEmailPassword(
+                //     emailController.text, passwordController.text);
+                // _firebaseService.signOut();
+                // _firebaseService.deleteAccount();
+                // _firebaseService.getCurrentUser();
+                // _firebaseService.signOut();
                 Navigator.pushNamedAndRemoveUntil(
                     context, AppRoutes.main, (route) => false);
               },

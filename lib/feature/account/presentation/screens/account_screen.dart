@@ -80,7 +80,10 @@ class _AccountScreenState extends State<AccountScreen> {
               AccountMenu(
                 label: 'Keluar',
                 icon: Icons.logout_rounded,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, AppRoutes.login, (route) => false);
+                },
               ),
               const SizedBox(
                 height: 16,
@@ -114,8 +117,8 @@ class _AccountScreenState extends State<AccountScreen> {
         child: isOnboarding
             ? ClipRRect(
                 borderRadius: BorderRadius.circular(12.r),
-                child: Image.network(
-                  'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+                child: Image.asset(
+                  'assets/images/profile-picture.jpeg',
                   fit: BoxFit.cover,
                 ),
               )

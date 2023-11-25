@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:secondhand_marketplace/config/firebase_service.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/button_widget.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/form.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/input_widget.dart';
@@ -20,6 +21,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController passwordController =
       TextEditingController(text: '');
   bool isPasswordObsecure = true;
+
+  @override
+  void dispose() {
+    super.dispose();
+    fullNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +67,9 @@ class RegisterForm extends StatelessWidget {
   final bool isPasswordObsecure;
   final VoidCallback onPasswordSuffixTap;
 
-  const RegisterForm({
+  final FirebaseService _firebaseService = FirebaseService();
+
+  RegisterForm({
     Key? key,
     required this.fullNameController,
     required this.emailController,
@@ -104,6 +115,8 @@ class RegisterForm extends StatelessWidget {
               ),
               CustomButton(
                 onTap: () {
+                  _firebaseService.registerWithEmailPassword(
+                      emailController.text, passwordController.text);
                   Navigator.pushNamedAndRemoveUntil(
                       context, AppRoutes.main, (route) => false);
                 },

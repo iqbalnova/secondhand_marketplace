@@ -9,6 +9,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool isObsecure;
   final VoidCallback? onTap;
   final int? maxLines;
+  final TextInputType keyboardType;
 
   const CustomTextFormField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onTap,
     required this.label,
     this.maxLines = 1,
+    this.keyboardType = TextInputType.text,
   });
 
   @override
@@ -76,6 +78,8 @@ class CustomTextFormField extends StatelessWidget {
           // hintStyle: whiteTextStyle.copyWith(
           //     fontWeight: light, color: whiteColor.withOpacity(0.4)),
         ),
+        keyboardType: keyboardType,
+        inputFormatters: [],
       ),
     );
   }

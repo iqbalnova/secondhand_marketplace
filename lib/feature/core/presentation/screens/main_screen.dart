@@ -23,15 +23,15 @@ class _MainScreenState extends State<MainScreen> {
   Widget _buildBody() {
     // TODO : Change this with Correct Screen
     switch (_currentIndex) {
+      // case 0:
+      //   return const OnDevScreen();
+      // case 1:
+      //   return const OnDevScreen();
       case 0:
-        return const OnDevScreen();
-      case 1:
-        return const OnDevScreen();
-      case 2:
         return const SellFormScreen();
-      case 3:
+      case 1:
         return const SellingList();
-      case 4:
+      case 2:
         return const AccountScreen();
 
       default:
@@ -53,14 +53,14 @@ class _MainScreenState extends State<MainScreen> {
 
   List<BottomNavigationBarItem> _bottomNavigationBarItems() {
     return const [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home_outlined),
-        label: 'Home',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.notifications_none),
-        label: 'Notifikasi',
-      ),
+      // BottomNavigationBarItem(
+      //   icon: Icon(Icons.home_outlined),
+      //   label: 'Home',
+      // ),
+      // BottomNavigationBarItem(
+      //   icon: Icon(Icons.notifications_none),
+      //   label: 'Notifikasi',
+      // ),
       BottomNavigationBarItem(
         icon: Icon(Icons.add_circle_outline),
         label: 'Jual',

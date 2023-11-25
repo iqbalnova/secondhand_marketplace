@@ -5,8 +5,10 @@ import 'package:secondhand_marketplace/feature/auth/presentation/screens/login_s
 import 'package:secondhand_marketplace/feature/auth/presentation/screens/register_screen.dart';
 import 'package:secondhand_marketplace/feature/core/presentation/screens/main_screen.dart';
 import 'package:secondhand_marketplace/feature/core/presentation/screens/splash_screen.dart';
+import 'package:secondhand_marketplace/feature/seller/presentation/screens/preview_screen.dart';
 import 'package:secondhand_marketplace/feature/seller/presentation/screens/sell_form_screen.dart';
 import 'package:secondhand_marketplace/feature/seller/presentation/screens/selling_list_screen.dart';
+import 'package:secondhand_marketplace/feature/seller/presentation/widgets/image_full_screen.dart';
 import 'package:secondhand_marketplace/routes/app_routes.dart';
 
 class AppRouter {
@@ -31,6 +33,30 @@ class AppRouter {
               return const SellingList();
             case AppRoutes.sellForm:
               return const SellFormScreen();
+            case AppRoutes.previewScreen:
+              // CASE 1
+              // final Map<String, dynamic> args =
+              //     settings.arguments as Map<String, dynamic>;
+              // final List<String> imgList = args['imgList'];
+              // return PreviewScreen(imgList: imgList);
+
+              // CASE 2
+              final args = settings.arguments as Map<String, dynamic>;
+              // final imgList = (args as Map<String, List<String>>)['imgList'];
+              return PreviewScreen(
+                imgList: args['imgList'],
+                category: args['category'] as String,
+                productName: args['productName'] as String,
+                price: args['price'] as String,
+                description: args['description'] as String,
+              );
+            case AppRoutes.imageFullScreen:
+              final args = settings.arguments as Map<String, dynamic>;
+              return FullscreenImageScreen(
+                imagePath: args['imagePath'],
+                imgList: args['imgList'],
+                initialPage: args['initialPage'],
+              );
             default:
               return const Scaffold(
                 body: Center(
