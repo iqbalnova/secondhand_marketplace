@@ -1,9 +1,11 @@
-import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:secondhand_marketplace/feature/account/presentation/widgets/dropdown_widget.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/button_widget.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/input_widget.dart';
+import 'package:secondhand_marketplace/feature/seller/presentation/widgets/render_add_photo_product.dart';
+import 'package:secondhand_marketplace/routes/app_routes.dart';
 import 'package:secondhand_marketplace/utils/styles.dart';
 
 class SellFormScreen extends StatefulWidget {
@@ -23,10 +25,23 @@ class _SellFormScreenState extends State<SellFormScreen> {
   final TextEditingController descriptionProductController =
       TextEditingController(text: '');
 
+  List<String> selectedPhotos = [];
+
+  @override
+  void dispose() {
+    // Dispose of controllers to prevent memory leaks
+    nameProductController.dispose();
+    priceProductController.dispose();
+    descriptionProductController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Lengkapi Detail Product',
             style: blackTextStyle.copyWith(fontWeight: FontWeight.w500)),
       ),
@@ -43,6 +58,7 @@ class _SellFormScreenState extends State<SellFormScreen> {
               CustomTextFormField(
                 hintText: 'Rp 0,00',
                 label: 'Harga Produk',
+                keyboardType: TextInputType.number,
                 controller: priceProductController,
               ),
               CustomDropdownFormField(
@@ -72,8 +88,31 @@ class _SellFormScreenState extends State<SellFormScreen> {
                 controller: descriptionProductController,
                 maxLines: 3,
               ),
-              const RenderAddPhotoProduct(),
-              const RenderButton()
+              RenderAddPhotoProduct(
+                selectedPhotos: selectedPhotos,
+                onPhotosSelected: (List<String> newPhotos) {
+                  setState(() {
+                    selectedPhotos = newPhotos;
+                  });
+                },
+              ),
+              RenderButton(
+                onTapPublish: () {
+                  if (kDebugMode) {
+                    print(selectedPhotos);
+                  }
+                },
+                onTapPreview: () {
+                  Navigator.pushNamed(context, AppRoutes.previewScreen,
+                      arguments: {
+                        'imgList': selectedPhotos,
+                        'category': selectedCategory.toString(),
+                        'productName': nameProductController.text,
+                        'price': priceProductController.text,
+                        'description': descriptionProductController.text,
+                      });
+                },
+              )
             ],
           ),
         ),
@@ -82,56 +121,14 @@ class _SellFormScreenState extends State<SellFormScreen> {
   }
 }
 
-class RenderAddPhotoProduct extends StatelessWidget {
-  const RenderAddPhotoProduct({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Foto Prodduk',
-            style: blackTextStyle,
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 4.h),
-            child: InkWell(
-              onTap: () {},
-              child: DottedBorder(
-                borderType: BorderType.RRect,
-                color: const Color(0xffD0D0D0),
-                dashPattern: const [6],
-                strokeWidth: 1.0,
-                radius: Radius.circular(12.r),
-                child: Container(
-                    height: 96.h,
-                    width: 96.w,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.r)),
-                    child: Center(
-                      child: Icon(
-                        Icons.add,
-                        size: 24.sp,
-                        color: const Color(0xff8A8A8A),
-                      ),
-                    )),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class RenderButton extends StatelessWidget {
+  final VoidCallback onTapPublish;
+  final VoidCallback onTapPreview;
+
   const RenderButton({
     super.key,
+    required this.onTapPublish,
+    required this.onTapPreview,
   });
 
   @override
@@ -144,7 +141,7 @@ class RenderButton extends StatelessWidget {
           SizedBox(
             width: 156.w,
             child: CustomButton(
-              onTap: () {},
+              onTap: onTapPreview,
               label: 'Preview',
               decoration: BoxDecoration(
                   color: whiteColor,
@@ -155,7 +152,7 @@ class RenderButton extends StatelessWidget {
           ),
           SizedBox(
             width: 156.w,
-            child: CustomButton(onTap: () {}, label: 'Terbitkan'),
+            child: CustomButton(onTap: onTapPublish, label: 'Terbitkan'),
           ),
         ],
       ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "923888681199",
+    "project_id": "secondhand-marketplace",
+    "storage_bucket": "secondhand-marketplace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923888681199:android:da7d4d574569b0082adb1a",
+        "android_client_info": {
+          "package_name": "com.zrifbal.secondhand_marketplace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp4MwzUp7vvrjIU1Ucs4KylteIOCRteB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:secondhand_marketplace/feature/account/presentation/widgets/dropdown_widget.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/button_widget.dart';
 import 'package:secondhand_marketplace/feature/auth/presentation/widgets/input_widget.dart';
@@ -22,6 +25,25 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
       TextEditingController(text: '');
   final TextEditingController phoneNumberController =
       TextEditingController(text: '');
+
+  String? imgAvatar;
+
+  Future<void> _getImage() async {
+    try {
+      final XFile? pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        setState(() {
+          imgAvatar = pickedFile.path;
+        });
+      } else {
+        // Pembatalan pemilihan gambar
+      }
+    } catch (e) {
+      // print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,19 +99,25 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
         ),
         child: isOnboarding
             ? InkWell(
-                onTap: () {},
+                onTap: _getImage,
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.circular(12.r),
-                      child: Image.network(
-                          'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-                          fit: BoxFit.cover,
-                          width: 100,
-                          height: 100,
-                          opacity: const AlwaysStoppedAnimation(0.5)),
-                    ),
+                        borderRadius: BorderRadius.circular(12.r),
+                        child: imgAvatar != null
+                            ? Image.file(
+                                File(imgAvatar!),
+                                fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
+                              )
+                            : Image.asset(
+                                'assets/images/profile-picture.jpeg',
+                                fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
+                              )),
                     Icon(
                       Icons.camera_alt_outlined,
                       size: 24.sp,
@@ -99,7 +127,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                 ),
               )
             : InkWell(
-                onTap: () {},
+                onTap: _getImage,
                 child: Icon(
                   Icons.camera_alt_outlined,
                   size: 24.sp,
