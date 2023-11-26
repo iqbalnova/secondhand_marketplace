@@ -103,14 +103,35 @@ class _SellFormScreenState extends State<SellFormScreen> {
                   }
                 },
                 onTapPreview: () {
-                  Navigator.pushNamed(context, AppRoutes.previewScreen,
-                      arguments: {
-                        'imgList': selectedPhotos,
-                        'category': selectedCategory.toString(),
-                        'productName': nameProductController.text,
-                        'price': priceProductController.text,
-                        'description': descriptionProductController.text,
-                      });
+                  if (isFormComplete()) {
+                    Navigator.pushNamed(context, AppRoutes.previewScreen,
+                        arguments: {
+                          'imgList': selectedPhotos,
+                          'category': selectedCategory.toString(),
+                          'productName': nameProductController.text,
+                          'price': priceProductController.text,
+                          'description': descriptionProductController.text,
+                        });
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text("Incomplete Form"),
+                          content: const Text(
+                              "Please fill in all the required fields."),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text("OK"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
                 },
               )
             ],
@@ -118,6 +139,14 @@ class _SellFormScreenState extends State<SellFormScreen> {
         ),
       ),
     );
+  }
+
+  bool isFormComplete() {
+    return selectedPhotos.isNotEmpty &&
+        selectedCategory != null &&
+        nameProductController.text.isNotEmpty &&
+        priceProductController.text.isNotEmpty &&
+        descriptionProductController.text.isNotEmpty;
   }
 }
 
