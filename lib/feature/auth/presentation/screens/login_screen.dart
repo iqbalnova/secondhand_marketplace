@@ -94,8 +94,8 @@ class LoginForm extends StatelessWidget {
             ),
             CustomButton(
               onTap: () {
-                // _firebaseService.signInWithEmailPassword(
-                //     emailController.text, passwordController.text);
+                _firebaseService.signInWithEmailPassword(
+                    emailController.text, passwordController.text);
                 // _firebaseService.signOut();
                 // _firebaseService.deleteAccount();
                 // _firebaseService.getCurrentUser();
