@@ -64,13 +64,17 @@ class FirebaseService {
 
   // Sign out
   Future<void> signOut() async {
-    print(FirebaseAuth.instance.signOut());
+    if (kDebugMode) {
+      print(FirebaseAuth.instance.signOut());
+    }
     await FirebaseAuth.instance.signOut();
   }
 
   // Get the current user
   User? getCurrentUser() {
-    print(FirebaseAuth.instance.currentUser);
+    if (kDebugMode) {
+      print(FirebaseAuth.instance.currentUser);
+    }
     return FirebaseAuth.instance.currentUser;
   }
 

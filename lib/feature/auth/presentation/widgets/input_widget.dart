@@ -79,7 +79,7 @@ class CustomTextFormField extends StatelessWidget {
           //     fontWeight: light, color: whiteColor.withOpacity(0.4)),
         ),
         keyboardType: keyboardType,
-        inputFormatters: [],
+        inputFormatters: const [],
       ),
     );
   }
