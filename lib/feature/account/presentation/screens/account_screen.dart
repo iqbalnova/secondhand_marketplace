@@ -49,56 +49,60 @@ class _AccountScreenState extends State<AccountScreen> {
       //   title: const Text(''),
       // ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Akun Saya',
-                style: titleTextStyle,
+        child: ListView(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Akun Saya',
+                    style: titleTextStyle,
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  _buildProfileImage(),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  AccountMenu(
+                    label: 'Ubah akun',
+                    icon: Icons.create_rounded,
+                    onTap: () {
+                      Navigator.pushNamed(context, AppRoutes.editAccount);
+                    },
+                  ),
+                  AccountMenu(
+                    label: 'Pengaturan akun',
+                    icon: Icons.settings,
+                    onTap: () {},
+                  ),
+                  AccountMenu(
+                    label: 'Keluar',
+                    icon: Icons.logout_rounded,
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoutes.login, (route) => false);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Center(
+                    child: Text(
+                      'Version ${_packageInfo.version}',
+                      style: blackTextStyle.copyWith(
+                          color: const Color(0xff8A8A8A),
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  )
+                ],
               ),
-              const SizedBox(
-                height: 24,
-              ),
-              _buildProfileImage(),
-              const SizedBox(
-                height: 32,
-              ),
-              AccountMenu(
-                label: 'Ubah akun',
-                icon: Icons.create_rounded,
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.editAccount);
-                },
-              ),
-              AccountMenu(
-                label: 'Pengaturan akun',
-                icon: Icons.settings,
-                onTap: () {},
-              ),
-              AccountMenu(
-                label: 'Keluar',
-                icon: Icons.logout_rounded,
-                onTap: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, AppRoutes.login, (route) => false);
-                },
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Center(
-                child: Text(
-                  'Version ${_packageInfo.version}',
-                  style: blackTextStyle.copyWith(
-                      color: const Color(0xff8A8A8A),
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w400),
-                ),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

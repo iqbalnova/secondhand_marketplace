@@ -64,49 +64,53 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        margin: EdgeInsets.only(top: 24.h),
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Masuk',
-              style: titleTextStyle,
-            ),
-            FormWidget(
-              childern: [
-                CustomTextFormField(
-                  hintText: 'Contoh: johndee@gmail.com',
-                  label: 'Email',
-                  controller: emailController,
+      child: ListView(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 24.h),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Masuk',
+                  style: titleTextStyle,
                 ),
-                CustomTextFormField(
-                  hintText: 'Masukkan Password',
-                  label: 'Password',
-                  isObsecure: isPasswordObsecure,
-                  controller: passwordController,
+                FormWidget(
+                  childern: [
+                    CustomTextFormField(
+                      hintText: 'Contoh: johndee@gmail.com',
+                      label: 'Email',
+                      controller: emailController,
+                    ),
+                    CustomTextFormField(
+                      hintText: 'Masukkan Password',
+                      label: 'Password',
+                      isObsecure: isPasswordObsecure,
+                      controller: passwordController,
+                      onTap: () {
+                        onPasswordSuffixTap();
+                      },
+                    ),
+                  ],
+                ),
+                CustomButton(
                   onTap: () {
-                    onPasswordSuffixTap();
+                    _firebaseService.signInWithEmailPassword(
+                        emailController.text, passwordController.text);
+                    // _firebaseService.signOut();
+                    // _firebaseService.deleteAccount();
+                    // _firebaseService.getCurrentUser();
+                    // _firebaseService.signOut();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, AppRoutes.main, (route) => false);
                   },
+                  label: 'Masuk',
                 ),
               ],
             ),
-            CustomButton(
-              onTap: () {
-                _firebaseService.signInWithEmailPassword(
-                    emailController.text, passwordController.text);
-                // _firebaseService.signOut();
-                // _firebaseService.deleteAccount();
-                // _firebaseService.getCurrentUser();
-                // _firebaseService.signOut();
-                Navigator.pushNamedAndRemoveUntil(
-                    context, AppRoutes.main, (route) => false);
-              },
-              label: 'Masuk',
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
